@@ -1,0 +1,160 @@
+<script>
+// Task 1 Create an empty object and assign it to a variable
+let emptyObject = {};
+
+// Create an object with properties for name, age, and profession
+let student = {
+  name: 'Ali Khan',
+  age: 20,
+  profession: 'Student'
+};
+
+console.log(emptyObject);
+console.log(student);
+
+// Task 2 Access and print the values of properties from an object
+console.log("Task 2",student.name); // Ali Khan
+console.log("Task 2",student.age); // 20
+console.log("Task 2",student.profession); // Student
+
+// Modify the value of a property in an object
+student.age = 21;
+console.log("Task 2",student.age); // 21
+
+// Add a new property to an existing object
+student.city = 'Lahore';
+console.log("Task 2",student.city); // Lahore
+
+
+// Task 3 Create an object method that prints a message to the console
+student.greet = function() {
+    console.log("Task 3",`Hello, my name is ${this.name}.`);
+  };
+  student.greet(); // Hello, my name is Ali Khan.
+  
+  // Create a method that calculates and returns a value based on object properties
+  student.yearsToGraduation = function() {
+    const graduationAge = 23;
+    return graduationAge - this.age;
+  };
+  console.log("Task 3",student.yearsToGraduation()); // 2
+  
+
+  // Task 4 Iterate over the properties of an object and print their values
+for (let key in student) {
+    console.log("Task 4",`${key}: ${student[key]}`);
+  }
+  
+  // Iterate over the properties of an object and perform a specific action for each property
+  Object.keys(student).forEach(key => {
+    console.log(`Property ${key} has value ${student[key]}`);
+  });
+  
+  //Task 5: Object Comparison
+let student2 = {
+  name: 'Ali Khan',
+  age: 21,
+  profession: 'Student',
+  city: 'Lahore'
+};
+
+// Compare two objects to check if they have the same properties and values
+function isEqual(obj1, obj2) {
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
+console.log("task 5",  isEqual(student, student2)); // true
+
+// Compare two objects to check if they refer to the same object in memory
+let student3 = student;
+console.log("task 5", student === student3); // true
+console.log("task 5", student === student2); // false
+
+
+// Task 6 Create an object that contains another object as one of its properties
+let university = {
+    name: 'University of Lahore',
+    location: 'Lahore',
+    student: student
+  };
+  
+  // Access and modify properties of a nested object
+  console.log("Task 6",university.student.name); // Ali Khan
+  university.student.age = 22;
+  console.log("Task 6",university.student.age); // 22
+  
+
+
+  // Task 7Create a prototype object and use it to create multiple instances of objects
+function Student(name, age, profession) {
+    this.name = name;
+    this.age = age;
+    this.profession = profession;
+  }
+  
+  Student.prototype.greet = function() {
+    console.log("task 7", `Hello, my name is ${this.name}.`);
+  };
+  
+  let studentA = new Student('Ayesha', 19, 'Student');
+  let studentB = new Student('Bilal', 22, 'Student');
+  
+  studentA.greet(); // Hello, my name is Ayesha.
+  studentB.greet(); // Hello, my name is Bilal.
+  
+
+  // task 8 Convert an object to a JSON string using JSON.stringify()
+let jsonString = JSON.stringify(student);
+console.log("Task 8",jsonString); // {"name":"Ali Khan","age":22,"profession":"Student","city":"Lahore"}
+
+// Parse a JSON string and convert it back to an object using JSON.parse()
+let parsedObject = JSON.parse(jsonString);
+console.log("Task 8",parsedObject); // {name: "Ali Khan", age: 22, profession: "Student", city: "Lahore"}
+
+
+
+// Task 9 Use object destructuring to extract specific properties from an object
+let { name, age, profession } = student;
+console.log("Task 9",name); // Ali Khan
+console.log("Task 9",age); // 22
+console.log("Task 9",profession); // Student
+
+
+// Task 10 Use Object.keys() to get an array of all the property names of an object
+let keys = Object.keys(student);
+console.log("Task 10",keys); // ["name", "age", "profession", "city", "greet", "yearsToGraduation"]
+
+
+//Task 11 Create a parent object and a child object that inherits properties and methods from the parent
+let parent = {
+    species: 'Human',
+    greet: function() {
+      console.log("Task 11",`Hello, I am a ${this.species}.`);
+    }
+  };
+  
+  let child = Object.create(parent);
+  child.name = 'Child';
+  child.greet(); // Hello, I am a Human.
+  console.log("Task 11",child.species); // Human
+  
+
+//Task 12 Create private properties in an object using closures or symbols
+function createStudent(name) {
+    let _name = name; // private property
+  
+    return {
+      getName: function() {
+        return _name;
+      },
+      setName: function(newName) {
+        _name = newName;
+      }
+    };
+  }
+  
+  let privateStudent = createStudent('Private Ali');
+  console.log("Task 12",privateStudent.getName()); // Private Ali
+  privateStudent.setName('Private Khan');
+  console.log("Task 11",privateStudent.getName()); // Private Khan
+  
+</script>
